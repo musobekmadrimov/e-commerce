@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./Checkout/FormInput";
 import { commerce } from "../../lib/commerce";
@@ -89,33 +89,22 @@ export default function AddressForm({ checkoutToken, next }) {
         Shipping Address
       </Typography>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => next({...data, shippingCountry, shippingOption, shippingSubdivision}))}>
+        <form
+          onSubmit={methods.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingOption,
+              shippingSubdivision,
+            })
+          )}
+        >
           <Grid container spacing={3}>
-            <FormInput
-              required
-              name="firstName"
-              label="First name"
-              placeholder="First name"
-            />
-            <FormInput
-              required
-              name="lastName"
-              label="Last name"
-              placeholder="Last name"
-            />
-            <FormInput
-              required
-              name="address1"
-              label="Address"
-              placeholder="Address"
-            />
-            <FormInput
-              required
-              name="email"
-              label="Email"
-              placeholder="Email"
-            />
-            <FormInput required name="city" label="City" placeholder="City" />
+            <FormInput required name="firstName" label="First name" />
+            <FormInput required name="lastName" label="Last name" />
+            <FormInput required name="address1" label="Address" />
+            <FormInput required name="email" label="Email" />
+            <FormInput required name="city" label="City" />
             <FormInput
               required
               name="zip"
@@ -170,9 +159,13 @@ export default function AddressForm({ checkoutToken, next }) {
             )}
           </Grid>
           <br />
-          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-              <Button component={Link} to="/cart" variant="outlined">Back to Card</Button>
-              <Button type="submit" color="primary" variant="contained">Next</Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button component={Link} to="/cart" variant="outlined">
+              Back to Card
+            </Button>
+            <Button type="submit" color="primary" variant="contained">
+              Next
+            </Button>
           </div>
         </form>
       </FormProvider>
