@@ -9,7 +9,7 @@ export default function Review({ checkoutToken }) {
       </Typography>
       <List disablePadding>
         {checkoutToken.live.line_items.map((product) => (
-          <>
+          <React.Fragment key={product.name}>
             <ListItem style={{ padding: "10px 0" }} key={product.name}>
               <ListItemText
                 primary={product.name}
@@ -20,7 +20,7 @@ export default function Review({ checkoutToken }) {
               </Typography>
             </ListItem>
             <hr />
-          </>
+          </React.Fragment>
         ))}
         <ListItem style={{ padding: "10px 0" }}>
           <ListItemText primary="Total" />

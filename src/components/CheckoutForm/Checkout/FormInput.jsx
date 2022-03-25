@@ -14,7 +14,6 @@ export default function FormInput({ name, label, required }) {
             label={label}
             required={required}
             fullWidth
-            defaultValue=""
           />
         )}
       />

@@ -10,7 +10,14 @@ import Review from "./Review";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-export default function PaymentForm({ checkoutToken, backStep, onCaptureCheckout, nextStep, shippingData }) {
+export default function PaymentForm({
+  checkoutToken,
+  backStep,
+  onCaptureCheckout,
+  nextStep,
+  shippingData,
+  timeout,
+}) {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
     if (!stripe || !elements) return;
@@ -41,13 +48,14 @@ export default function PaymentForm({ checkoutToken, backStep, onCaptureCheckout
         },
         fullfillment: { shipping_method: shippingData.shippingOption },
         payment: {
-          gateway: 'stripe', 
+          gateway: "stripe",
           stripe: {
-            payment_method_id: paymentMethod.id
-          }
-        }
+            payment_method_id: paymentMethod.id,
+          },
+        },
       };
-      onCaptureCheckout(checkoutToken.id, orderData)
+      onCaptureCheckout(checkoutToken.id, orderData);
+      timeout();
       nextStep();
     }
   };

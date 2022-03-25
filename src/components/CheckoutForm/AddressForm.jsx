@@ -68,7 +68,7 @@ export default function AddressForm({ checkoutToken, next }) {
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
-  }, []);
+  }, [checkoutToken]);
 
   useEffect(() => {
     shippingCountry && fetchSubdivisions(shippingCountry);
@@ -81,7 +81,7 @@ export default function AddressForm({ checkoutToken, next }) {
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingSubdivision]);
+  }, [shippingSubdivision, checkoutToken, shippingCountry]);
 
   return (
     <>
@@ -100,11 +100,11 @@ export default function AddressForm({ checkoutToken, next }) {
           )}
         >
           <Grid container spacing={3}>
-            <FormInput required name="firstName" label="First name" />
-            <FormInput required name="lastName" label="Last name" />
-            <FormInput required name="address1" label="Address" />
-            <FormInput required name="email" label="Email" />
-            <FormInput required name="city" label="City" />
+            <FormInput  name="firstName" label="First name" />
+            <FormInput  name="lastName" label="Last name" />
+            <FormInput  name="address1" label="Address" />
+            <FormInput  name="email" label="Email" />
+            <FormInput  name="city" label="City" />
             <FormInput
               required
               name="zip"
